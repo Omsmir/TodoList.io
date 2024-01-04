@@ -5,43 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body >
 
-    <div class="container">
-        <div class="form">
-            <input type="text" id="text" class="input" />
-            <input type="submit" id="submit"  value="Add Task" />
-          </div>
+    <div class="container d-flex  flex-column align-items-center">
+       <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 ">
+            <div class="form p-2 d-flex justify-content-center align-items-center my-3 mb-5">
+                <div class="row d-flex justify-content-center align-items-center">
+                <input type="text" id="text" class="col-lg-5 col-md-6 col input me-2" placeholder="Your Task" required>
+                <span class="col">
+                    <div class="con d-flex flex-column justify-content-center align-items-center">
+                        <input type="text" id="name" class="input" placeholder="By Who"/>
+                        <form class="row row-cols-2 d-flex mt-1 justify-content-center align-items-center" id="label-form">
+                            <input type="text" id="label" class="col-10" placeholder="type label"/>
+                            <input type="color" class="col p-0" id="color-picker">
+                        </form>
+                    </div>
+                </span>
+                <span class="col">
+                    <input type="submit" id="submit"  value="Add Task" />
 
-          <div class="tasks">
-              <div class="todo">
-                 <!-- <div class="text">
-                     <p>omar</p>
-                     <span class="button">button</span>
-
-
-                 </div>
-                 -->
+                </span>
+                </div>
               </div>
-              <div class="done">
-                <!-- <div class="text">
-                    <p class="one">
-                        <input type="text" id="inputDone">
-                        <p>omar</p>
-
-                    </p>
-                    <span class="button">button</span>
-                    <span class="edit button" aria-disabled="true">edit</span>
-
-                    <span class="button" id="ok" >ok</span>
-                </div> -->
-               
+    
+              <div class="tasks d-flex justify-content-center align-content-center flex-column">
+                <span class="header w-100 d-grid">
+                    <div class="inner ms-4 d-flex flex-row justify-content-start align-items-center">
+                       <aside class="regulator d-flex justify-content-center align-items-center">
+                        <i class="fas fa-tasks"></i>
+                        <p class="task-head ms-2">Task list</p>
+                       </aside>
+                    </div>
+                </span>
+                  <div class="todo d-flex justify-content-center flex-column align-items-center ">
+                  
+                       <!-- <div class="row fir row-cols-3 pt-2 pb-2 text d-flex flex-row justify-content-center align-items-center ">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-2 left d-flex flex-row justify-content-center align-items-center">
+                          <span class="color me-3 rounded-1 "></span>
+                          <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                           <label class="form-check-label" for="defaultCheck1">
+                           </label>
+                         </div>
+                        </div>
+                         <div class="col-lg-7 col-md-7 col-sm-6 col-7 content d-flex  flex-column align-items-start">
+                          <div class="first-child d-flex flex-row mt-1 justify-content-center align-items-center">
+                              <p class="value me-2 fw-bold text-capitalize">add task Lorem ipsum d</p>
+                              <span class="badge bg-danger">Danger</span>
+                          </div>
+                          <div class="second-child">
+                             <figure class="m-0">
+                                 <figcaption class="blockquote-footer mb-0"> Someone famous in  </figcaption>
+                              </figure>
+                          </div>
+                         </div>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-3 last widget-content-right d-flex flex-row justify-content-end ">
+                         <div class="row row-cols-3">
+                            <button class="col finished border-0 btn-transition rounded-0 btun">
+                                <i class="fa fa-check"></i></button>
+                                <button class="col edit border-0 btn-transition rounded-0 btun">
+                                  <i class="fa fa-edit "></i>  
+                                </button>
+                              <button class="col delete border-0 btn-transition rounded-0 btun ">
+                                <i class="fa fa-trash"></i>               
+                              </button>
+                         </div>
+                        </div>
+                       </div>    -->
+                  </div>
+                  
+                
               </div>
-          </div>
-
+    
+        </div>
+       </div>
+       
 </div>
-    <script src="main.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
