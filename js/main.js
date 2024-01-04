@@ -112,6 +112,7 @@ if(ele.target.classList.contains("edit")){
             
                 ele.target.disabled = true
 
+
                 let hand = ele.target.previousElementSibling.firstElementChild
                 form.onfocus = () => {     
                         hand.classList.add("active")                 
@@ -119,8 +120,14 @@ if(ele.target.classList.contains("edit")){
                  form.onblur = () =>{
                 
                     hand.classList.remove("active")                 
+                    emptyArray[i].content = form.value
 
+                    addToLocal(emptyArray)
+
+                    addToPage(emptyArray)
                  }
+                 form.focus()
+
 
                  let okayButton = ele.target.previousElementSibling
 
@@ -172,7 +179,7 @@ function addToPage(emptyArray){
                </label>
              </div>
             </div>
-             <div class="col-lg-7 col-md-7 col-sm-7 col-8 content d-flex  flex-column align-items-start">
+             <div class="col-lg-7 first col-md-7 col-sm-7 col-8 content d-flex  flex-column align-items-start">
               <div class="first-child d-flex flex-row mt-1 justify-content-center align-items-center">
                   <p class="value me-2 fw-bold text-capitalize" style="text-decoration:${task.style};">${task.content}</p>
                 ${badgeRemane(task.label,task.colorHash)}

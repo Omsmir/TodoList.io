@@ -118,7 +118,6 @@ body {
 .tasks .todo .row.fir  {
     border-top: 1px solid #495057;
     border-bottom: 0;
-    overflow: hidden;
 }
 
 .edit i{
@@ -265,6 +264,12 @@ i {
     font-size: 11px;
     animation: animate-1 0.7s ease-in-out alternate 1;
     width: auto;
+  }
+  .first {
+    overflow: hidden;
+  }
+  .fa-hand-pointer{
+    left: 30px;
   }
 }
 
