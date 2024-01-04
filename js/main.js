@@ -79,9 +79,11 @@ let id = ele.target.parentElement.parentElement.parentElement
 
         text.style.textDecoration = "line-through"
         for(let i = 0; i < emptyArray.length; i++){
+          if(emptyArray[i].id == id.getAttribute("data-id")){
+
             emptyArray[i].checked = "noactive"
             emptyArray[i].check = "checked"
-            emptyArray[i].style = "line-through !important"
+            emptyArray[i].style = "line-through !important"        }
         }
         addToLocal(emptyArray)
 
