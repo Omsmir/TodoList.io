@@ -118,6 +118,7 @@ body {
 .tasks .todo .row.fir  {
     border-top: 1px solid #495057;
     border-bottom: 0;
+    overflow: hidden;
 }
 
 .edit i{
@@ -223,4 +224,57 @@ i {
 .noactive {
     pointer-events: none;
     opacity: 0.5;
+}
+
+.submit {
+    display: flex;
+    justify-content: center  ;
+    align-items: center ;
+}
+
+@media (max-width:568px){
+  #name {
+    max-width: 100%;
+  }
+  #inside {
+    max-width: 100px;
+    padding: 0;
+  }
+  #label {
+    max-width: 70%;
+  }
+  .submit {
+    margin-top: 10px;
+  }
+  #submit {
+    padding: 5px !important;
+  }
+  .last {
+    padding: 0;
+    justify-content: center !important;
+    margin-top: 5px;
+  }
+  .row.fir {
+    padding: 0 !important;
+    padding-top: 10px !important;
+  }
+  .value {
+    font-size: 11px;
+  }
+  #inputDone {
+    font-size: 11px;
+    animation: animate-1 0.7s ease-in-out alternate 1;
+    width: auto;
+  }
+}
+
+@keyframes animate-1 {
+    from{
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        width: 137px;
+    }
 }

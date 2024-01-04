@@ -16,17 +16,17 @@
         <div class="col-lg-6 ">
             <div class="form p-2 d-flex justify-content-center align-items-center my-3 mb-5">
                 <div class="row d-flex justify-content-center align-items-center">
-                <input type="text" id="text" class="col-lg-5 col-md-6 col input me-2" placeholder="Your Task" required>
-                <span class="col">
+                <input type="text" id="text" class="col-lg-5 col-md-6 col-6 input me-2" placeholder="Your Task" required>
+                <span class="col" id="inside">
                     <div class="con d-flex flex-column justify-content-center align-items-center">
                         <input type="text" id="name" class="input" placeholder="By Who"/>
                         <form class="row row-cols-2 d-flex mt-1 justify-content-center align-items-center" id="label-form">
-                            <input type="text" id="label" class="col-10" placeholder="type label"/>
+                            <input type="text" id="label" min="5"  max="15" class="col-10" placeholder="type label"/>
                             <input type="color" class="col p-0" id="color-picker">
                         </form>
                     </div>
                 </span>
-                <span class="col">
+                <span class="col submit">
                     <input type="submit" id="submit"  value="Add Task" />
 
                 </span>

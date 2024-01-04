@@ -164,7 +164,7 @@ function addToPage(emptyArray){
 
         let result = emptyArray.map((task) => {
             return  `<div data-id="${task.id}" todo="${task.todo}" class="row fir row-cols-3 pt-2 pb-2 text d-flex flex-row justify-content-center align-items-center ">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-2 left d-flex flex-row justify-content-center align-items-center">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-4 left d-flex flex-row justify-content-center align-items-center">
               <span class="color me-3 rounded-1 " style="background-color: ${task.colorHash} !important;"></span>
               <div class="form-check">
                <input class="form-check-input ${task.checked}" type="checkbox" id="defaultCheck1" ${task.check}>
@@ -172,7 +172,7 @@ function addToPage(emptyArray){
                </label>
              </div>
             </div>
-             <div class="col-lg-7 col-md-7 col-sm-6 col-7 content d-flex  flex-column align-items-start">
+             <div class="col-lg-7 col-md-7 col-sm-7 col-8 content d-flex  flex-column align-items-start">
               <div class="first-child d-flex flex-row mt-1 justify-content-center align-items-center">
                   <p class="value me-2 fw-bold text-capitalize" style="text-decoration:${task.style};">${task.content}</p>
                 ${badgeRemane(task.label,task.colorHash)}
@@ -183,7 +183,7 @@ function addToPage(emptyArray){
                   </figure>
               </div>
              </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 col-3 last widget-content-right d-flex flex-row justify-content-end ">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-12 last widget-content-right d-flex flex-row justify-content-end ">
              <div class="row row-cols-3">
                 <button class="col finished border-0 btn-transition rounded-0 btn btun position-relative">
                     <i class="fa fa-hand-pointer"></i>
