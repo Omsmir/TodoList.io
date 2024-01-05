@@ -6,7 +6,7 @@ let provider = document.querySelector("#name")
 let colorPicker = document.getElementById("color-picker")
 let text = document.getElementById("text")
 let buttons = document.querySelectorAll(".last button")
-
+let colorLine = document.querySelector("#color-line")
 
 emptyArray = [];
 
@@ -32,12 +32,12 @@ function empty(){
 
 submit.onclick = function (){
     if(text.value !== "" && provider.value !== ""&& label.value !== ""){
-        addElements(text.value,provider.value,label.value,colorPicker.value)
+        addElements(text.value,provider.value,label.value,colorPicker.value,colorLine.value)
 
         empty()
 
     }else if ( text.value !== "" && provider.value !== "" ){
-            addElements(text.value,provider.value,"" ,colorPicker.value)
+            addElements(text.value,provider.value,"" ,colorPicker.value,colorLine.value)
             empty()
     }else if (text.value !== ""){
         provider.focus()
@@ -46,6 +46,20 @@ submit.onclick = function (){
 }
 
 
+
+function toggleLocal(taskid ,check,value,style){
+    for(let i = 0; i < emptyArray.length; i++){
+        if(emptyArray[i].id == taskid){
+            emptyArray[i].todo == false ? (emptyArray[i].todo = true) : (emptyArray[i].todo = false)
+            // htmltask.setAttribute("todo",false ? true : false)            
+            emptyArray[i].checked = `${check}`
+            emptyArray[i].check = `${value}`
+            emptyArray[i].style = `${style}`  
+        }
+    }
+    addToLocal(emptyArray)
+
+}
 
 
 todo.addEventListener("click" , (ele) =>{
@@ -56,9 +70,6 @@ function delLocal(taskid){
     addToLocal(emptyArray)
 }
         
-
-
-
 delLocal(ele.target.parentElement.parentElement.parentElement.getAttribute("data-id"))
 
     ele.target.parentElement.parentElement.parentElement.remove()
@@ -69,25 +80,19 @@ delLocal(ele.target.parentElement.parentElement.parentElement.getAttribute("data
 let id = ele.target.parentElement.parentElement.parentElement
 
     if(ele.target.id == "defaultCheck1"){
-        ele.target.disabled = true
 
-        let text = ele.target.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild
+            if(ele.target.parentElement.parentElement.parentElement.getAttribute("todo") == "false"){
+                toggleLocal(id.getAttribute("data-id"),"","checked","line-through !important")
+                
+            }else if (ele.target.parentElement.parentElement.parentElement.getAttribute("todo") == "true"){
+                toggleLocal(id.getAttribute("data-id"),"","","none !important")
 
+            }
 
-        toggleLocal(id.getAttribute("data-id"),id)
-
-
-        text.style.textDecoration = "line-through"
-        for(let i = 0; i < emptyArray.length; i++){
-          if(emptyArray[i].id == id.getAttribute("data-id")){
-
-            emptyArray[i].checked = "noactive"
-            emptyArray[i].check = "checked"
-            emptyArray[i].style = "line-through !important"        }
-        }
-        addToLocal(emptyArray)
-
+        
     }
+
+    addToPage(emptyArray)
 
 
 if(ele.target.classList.contains("edit")){
@@ -147,19 +152,22 @@ if(ele.target.classList.contains("edit")){
 
 })
 
-function addElements (textValue,provider,label,color){
+function addElements (textValue,provider,label,color,line){
     let tasks = {
         id: emptyArray.length+1,
         content: textValue,
         providerName:provider,
         label:label,
         colorHash:color,
+        colorl:line,
         todo: false
     }
     emptyArray.push(tasks)
 
 
     addToPage(emptyArray)
+
+    addShow(emptyArray)
 
     addToLocal(emptyArray)
     
@@ -172,9 +180,9 @@ function addToPage(emptyArray){
 
 
         let result = emptyArray.map((task) => {
-            return  `<div data-id="${task.id}" todo="${task.todo}" class="row fir row-cols-3 pt-2 pb-2 text d-flex flex-row justify-content-center align-items-center ">
+            return  `<div data-id="${task.id}" todo="${task.todo}" class="row fir  row-cols-3 text d-flex flex-row justify-content-center align-items-center ">
             <div class="col-lg-2 col-md-2 col-sm-2 col-4 left d-flex flex-row justify-content-center align-items-center">
-              <span class="color me-3 rounded-1 " style="background-color: ${task.colorHash} !important;"></span>
+              <span class="color me-3 rounded-1 " style="background-color: ${task.colorl} !important;"></span>
               <div class="form-check">
                <input class="form-check-input ${task.checked}" type="checkbox" id="defaultCheck1" ${task.check}>
                <label class="form-check-label" for="defaultCheck1">
@@ -183,7 +191,7 @@ function addToPage(emptyArray){
             </div>
              <div class="col-lg-7 first col-md-7 col-sm-7 col-8 content d-flex  flex-column align-items-start">
               <div class="first-child d-flex flex-row mt-1 justify-content-center align-items-center">
-                  <p class="value me-2 fw-bold text-capitalize" style="text-decoration:${task.style};">${task.content}</p>
+                  <p class="value me-2 fw-bold text-capitalize" style="text-decoration:${task.style};">${task.content} </p>
                 ${badgeRemane(task.label,task.colorHash)}
               </div>
               <div class="second-child">
@@ -192,7 +200,7 @@ function addToPage(emptyArray){
                   </figure>
               </div>
              </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-12 last widget-content-right d-flex flex-row justify-content-end ">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-12 last widget-content-right d-flex flex-row justify-content-center ">
              <div class="row row-cols-3">
                 <button class="col finished border-0 btn-transition rounded-0 btn btun position-relative">
                     <i class="fa fa-hand-pointer"></i>
@@ -209,8 +217,25 @@ function addToPage(emptyArray){
            </div>  `
 
         })
+   
         todo.innerHTML = result.join("")
 
+       
+
+}
+
+function addShow(emptyArray){
+    emptyArray.map((tasks) => {
+        document.querySelectorAll(".row.fir").forEach((ele) => {
+            if(tasks.id == ele.getAttribute("data-id")){
+                    ele.classList.add("show")
+                
+            }else {
+                ele.classList.remove("show")
+            }
+            
+         })
+       })
 }
 
 function badgeRemane(content,colorhash) {
@@ -239,193 +264,10 @@ function getFromLocal(){
 }
 
 
-function toggleLocal(taskid , htmltask){
-    for(let i = 0; i < emptyArray.length; i++){
-        if(emptyArray[i].id == taskid){
-            emptyArray[i].todo == false ? (emptyArray[i].todo = true) : (emptyArray[i].todo = true)
-            htmltask.setAttribute("todo",true)
-        }
-    }
-    addToLocal(emptyArray)
-}
-// function toggledone(taskid){
-//     for(let i = 0; i < doneArray.length; i++){
-//         if(doneArray[i].id == taskid){
-//             doneArray[i].todo == true ? (doneArray[i].todo = false) : (doneArray[i].todo = true)
 
-//         }
-//     }
-//     DoneLocal(doneArray)
-// }
-
-// function addToDone(doneArra){
+document.querySelectorAll(".row.fir").forEach((ele) => { 
+        ele.classList.remove("show")
     
-//     done.innerHTML = ""
-
-//     doneArra.forEach((task) => {
-//         let div = document.createElement("div")
-
-//         div.className = "text active";
-    
-//         div.setAttribute("data-id", task.id)
-
-//         div.setAttribute("state", task.todo)
-//         let edit = document.createElement("button")
-
-//         edit.className = "button edit"
-
-//         edit.innerHTML = "edit"
-
-
-//         let p  = document.createElement("p")
-
-//         let secp = document.createElement("p")
-
-//         secp.appendChild(document.createTextNode(task.content))
-    
-//         p.appendChild(secp)
-
-//         p.className = "one"
-    
-//         let span = document.createElement("span")
-    
-//         span.className = "button del"
-    
-//         span.innerText = "Delete"
-
-//         div.appendChild(p)
-//         div.appendChild(edit)
-
-    
-//         div.appendChild(span)
-    
-//         done.appendChild(div)
-
-//         document.querySelectorAll(".text").forEach((ele) => {
-//             if(task.id == ele.getAttribute("data-id")){
-//                 ele.classList.add("active")
-                
-//             }else {
-//                 ele.classList.remove("active")
-//             }
-            
-//          })
-//     })
-// }
-
-// getFromDone()
-
-// function getFromDone(){
-//     let data = window.localStorage.getItem("done")
-
-//     if(data){
-//         let task = JSON.parse(data)
-
-//         addToDone(task)
-//     }
-// }
-
-// function delDone(taskid){
-//      doneArray = doneArray.filter((task) => task.id != taskid)
-
-//     DoneLocal(doneArray)
-// }
-
-// function updateDone(taskid,form){
-//     for(i = 0; i < doneArray.length; i++){
-//         if(doneArray[i].id == taskid){
-//             doneArray[i].content = form.value
-//         }
-//     }
-// }
-
-// done.addEventListener("click" ,(ele) => {
-//     if(ele.target.classList.contains("del")){
-
-//         delDone(ele.target.parentElement.getAttribute("data-id"))
-
-
-//         ele.target.parentElement.remove()
-//     }
-//     if(ele.target.classList.contains("edit")){
-//         for (let i = 0; i < doneArray.length; i++){
-//             if(doneArray[i].id == ele.target.parentElement.getAttribute("data-id")){
-
-// function edit(){
-    
-//     let form = document.createElement("input")
-
-//     form.type = "text"
-
-//     form.id = "inputDone"
-    
-//     let one  = ele.target.previousElementSibling
-
-//     console.log(one)
-
-//     form.value = one.innerText
-
-//     one.firstElementChild.remove()
-
-//     one.appendChild(form)
-
-//     ele.target.nextSibling.remove()
-
-
-//     let OkButton = document.createElement("span")
-
-//     OkButton.className = "button"
-
-//     OkButton.id = "ok"
-
-//     OkButton.innerText = "ok"
-//     ele.target.parentElement.appendChild(OkButton)
-
-//     ele.target.setAttribute("aria-disabled","true")
-
-//     ele.target.disabled = true
-
-//     toggledone(ele.target.parentElement.getAttribute("data-id"))
-
-// }
-// edit()
-
-//                 // ele.target.remove()
-
-//             }
-//         }
-
-//     }
-//     if(ele.target.id == "ok"){
-//         updateDone(ele)
-//         // for(let i = 0 ; i < doneArray.length; i++){
-//         //     if(doneArray[i].id == ele.target)
-//         // }
-
-//         addToDone(doneArray)
-//     }
-    
-
-// })
-
-
-
-function updateDone(ele){
-    for(let i = 0 ; i < emptyArray.length; i++){
-        if(emptyArray[i].id == ele.target.parentElement.parentElementparentElement.getAttribute("data-id")){
-            let textV = ele.target.parentElement.firstElementChild.firstElementChild.value
-
-            emptyArray[i].content = textV
-
-            console.log(            doneArray[i].content = textV
-                )
-        }
-    }
-    DoneLocal(doneArray)
-}
-
-// document.querySelectorAll(".text").forEach((ele) => { 
-//     ele.classList.remove("active")
-// })
+})
 
 

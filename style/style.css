@@ -14,16 +14,21 @@ body {
     line-height: 1.5 !important;
     color: #495057 !important;
     text-align: left !important;
-    background-color: #6200EA !important;
+    background: #0F2027 !important;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027) !important;  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .container .row {
     width: 100%;
 }
 
+#inside {
+    padding: 0;
+    padding-right: 5px;
+}
 
 .container .form {
-    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 2px;
 }
 .container .form .input {
@@ -35,6 +40,15 @@ body {
     caret-color: var(--color-danger);
 }
 
+#text {
+    width: 100%;
+}
+#color-line {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
 
 #label-form {
   background-color: #dcd7d7;
@@ -42,19 +56,27 @@ body {
   border-radius: 3px;
   border: none;
   caret-color: var(--color-danger);
+  margin-top: 5px;
 }
 #label-form input[type="text"]{
     background: none;
     border: none;
     outline: none;
 }
+#label {
+    width: 70%;
+}
 #color-picker {
     border: none;
     background-color: transparent;
-    width: 25px;
+    width: 30%;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     cursor: pointer;
+}
+
+#name {
+    width: 100%;
 }
 .container .form #submit {
     padding: 10px;
@@ -115,6 +137,18 @@ body {
     border-bottom: 1px solid #495057;
     position: relative;
 }
+.tasks .todo .row.fir.show {
+    animation: fade-in 0.5s ease-in-out alternate 1;
+
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 .tasks .todo .row.fir  {
     border-top: 1px solid #495057;
     border-bottom: 0;
@@ -174,9 +208,6 @@ i {
     color: #000000;
 }
 
-.first-child .badge {
-    height: 20px;
-}
 
 
 .btun {
@@ -197,6 +228,8 @@ i {
   font-size: 1rem;
   border-radius: .25rem;
   transition: var(--transition-main);
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .fa-hand-pointer{
     position: absolute;
@@ -231,26 +264,38 @@ i {
     align-items: center ;
 }
 
-@media (max-width:568px){
+.last {
+    padding: 0;
+}
+@media (max-width:576px){
+    .element {
+        padding: 0;
+    }
+    #text {
+        font-size: 12px;
+    }
   #name {
     max-width: 100%;
+    font-size: 12px;
   }
   #inside {
-    max-width: 100px;
     padding: 0;
+    margin-left: 5px;
   }
   #label {
     max-width: 70%;
+    font-size: 12px;
   }
   .submit {
     margin-top: 10px;
+    padding: 0;
   }
   #submit {
     padding: 5px !important;
+    width: 100%;
   }
   .last {
     padding: 0;
-    justify-content: center !important;
     margin-top: 5px;
   }
   .row.fir {
@@ -270,6 +315,9 @@ i {
   }
   .fa-hand-pointer{
     left: 30px;
+  }
+  .btun {
+    padding: .375rem .75rem;
   }
 }
 
