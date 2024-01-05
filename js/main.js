@@ -12,7 +12,7 @@ emptyArray = [];
 
 // doneArray = []
 
-
+text.focus()
 if (window.localStorage.getItem("tasks")){
     emptyArray = JSON.parse(window.localStorage.getItem("tasks"))
     
@@ -56,6 +56,7 @@ function toggleLocal(taskid ,check,value,style){
         }
     }
     addToLocal(emptyArray)
+    addToPage(emptyArray)
 
 }
 
@@ -81,16 +82,12 @@ let id = ele.target.parentElement.parentElement.parentElement
 
             if(ele.target.parentElement.parentElement.parentElement.getAttribute("todo") == "false"){
                 toggleLocal(id.getAttribute("data-id"),"","checked","line-through !important")
-                
             }else if (ele.target.parentElement.parentElement.parentElement.getAttribute("todo") == "true"){
                 toggleLocal(id.getAttribute("data-id"),"","","none !important")
 
             }
-
         
     }
-
-    addToPage(emptyArray)
 
 
 if(ele.target.classList.contains("edit")){
@@ -178,7 +175,7 @@ function addToPage(emptyArray){
 
 
         let result = emptyArray.map((task) => {
-            return  `<div data-id="${task.id}" todo="${task.todo}" class="row fir  row-cols-3 text d-flex flex-row justify-content-center align-items-center ">
+            return  `<div data-id="${task.id}" todo="${task.todo}" class="row fir row-cols-3 text d-flex flex-row justify-content-center align-items-center ">
             <div class="col-lg-2 col-md-2 col-sm-2 col-4 left d-flex flex-row justify-content-center align-items-center">
               <span class="color me-3 rounded-1 " style="background-color: ${task.colorl} !important;"></span>
               <div class="form-check">
@@ -218,22 +215,7 @@ function addToPage(emptyArray){
    
         todo.innerHTML = result.join("")
 
-       
 
-}
-
-function addShow(emptyArray){
-    emptyArray.map((tasks) => {
-        document.querySelectorAll(".row.fir").forEach((ele) => {
-            if(tasks.id == ele.getAttribute("data-id")){
-                    ele.classList.add("show")
-                
-            }else {
-                ele.classList.remove("show")
-            }
-            
-         })
-       })
 }
 
 function badgeRemane(content,colorhash) {
@@ -264,8 +246,21 @@ function getFromLocal(){
 
 
 document.querySelectorAll(".row.fir").forEach((ele) => { 
-        ele.classList.remove("show")
-    
+    ele.classList.remove("show")
 })
 
 
+function addShow(emptyArray){
+    emptyArray.forEach((tasks) => {
+        document.querySelectorAll(".row.fir").forEach((ele) => {
+            if(tasks.id == ele.getAttribute("data-id")){
+                console.log("ok")
+                ele.classList.add("show")
+                
+            }else {
+                ele.classList.remove("show")
+            }
+            
+         })
+       })
+}
