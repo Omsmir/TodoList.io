@@ -26,8 +26,6 @@ function empty(){
     text.value =""
     provider.value=""
     label.value =""
-    text.focus()
-
 }
 
 submit.onclick = function (){
