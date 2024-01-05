@@ -30,12 +30,18 @@ function empty(){
 
 submit.onclick = function (){
     if(text.value !== "" && provider.value !== ""&& label.value !== ""){
-        addElements(text.value,provider.value,label.value,colorPicker.value,colorLine.value)
+        let valid = /[a-z]/g;
+
+        let success = provider.value.match(valid).join("")
+        addElements(text.value,success,label.value,colorPicker.value,colorLine.value)
 
         empty()
 
     }else if ( text.value !== "" && provider.value !== "" ){
-            addElements(text.value,provider.value,"" ,colorPicker.value,colorLine.value)
+        let valid = /[a-z]/g;
+
+        let success = provider.value.match(valid).join("")
+            addElements(text.value,success,"" ,colorPicker.value,colorLine.value)
             empty()
     }else if (text.value !== ""){
         provider.focus()
