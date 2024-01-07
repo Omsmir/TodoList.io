@@ -3,6 +3,7 @@
     margin: 0;
     --color-danger: #dc3545;
     --color-success : #198754;
+    --white-main:#e4e9e9;
     --color-o:#fd7e14;
     --transition-main: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -78,10 +79,14 @@ background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W
 #name {
     width: 100%;
 }
+.container .col-lg-6:first-of-type {
+    background-color: var(--white-main);
+    border-radius: 3px;
+}
 .container .form #submit {
     padding: 10px;
     color: white;
-    background-color: var(--color-danger);
+    background-color: #184496cf;
     border: none;
     border-radius: 2px;
     cursor: pointer;
@@ -90,7 +95,7 @@ background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W
 }
 .container .form #submit:hover {
     transform: scale(1.010);
-    background-color: #9e1818;
+    background-color: #073996e2;
 
 }
 @keyframes animate {
@@ -104,7 +109,7 @@ background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W
     }
 }
 #inputDone {
-    background-color: #E8D9FC;
+    background-color: var(--white-main);
     border: none;
     width: fit-content;
     font-weight: bold;
@@ -117,7 +122,7 @@ background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     height: 50px;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: var(--white-main);
 }
 .tasks .header .task-head {
     margin:0 ;
@@ -127,7 +132,7 @@ background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W
     font-size: 18px;
 }
 .tasks .todo {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: var(--white-main);
 }
 .tasks .todo:last-of-type {
     border-bottom-left-radius: 3px;
@@ -152,6 +157,10 @@ background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W
 .tasks .todo .row.fir  {
     border-top: 1px solid #495057;
     border-bottom: 0;
+}
+
+button i {
+    pointer-events: none;
 }
 
 .edit i{
@@ -233,7 +242,7 @@ i {
 }
 .fa-hand-pointer{
     position: absolute;
-    color: #a6212f !important;
+    color: #358049 !important;
     font-size: 20px;
     left: 15px;
     bottom: -10px;
@@ -249,7 +258,7 @@ i {
         transform: scale(1);
     }
     to {
-        transform: scale(1.1);
+        transform: scale(1.3);
     }
 }
 

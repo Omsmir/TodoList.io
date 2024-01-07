@@ -8,9 +8,14 @@ let text = document.getElementById("text")
 let buttons = document.querySelectorAll(".last button")
 let colorLine = document.querySelector("#color-line")
 
+
+
+
 emptyArray = [];
 
 // doneArray = []
+
+
 
 text.focus()
 if (window.localStorage.getItem("tasks")){
@@ -19,6 +24,10 @@ if (window.localStorage.getItem("tasks")){
 }
 
 
+for(let i = 0 ; i < emptyArray.length; i++){
+    colorPicker.value == emptyArray[i].colorhash
+    colorLine.value == emptyArray[i].colorl
+}
 
 getFromLocal()
 
@@ -164,7 +173,8 @@ function addElements (textValue,provider,label,color,line){
         label:label,
         colorHash:color,
         colorl:line,
-        todo: false
+        todo: false,
+        date: new Date().toDateString(),
     }
     emptyArray.push(tasks)
 
@@ -200,7 +210,7 @@ function addToPage(emptyArray){
               </div>
               <div class="second-child">
                  <figure class="m-0">
-                     <figcaption class="blockquote-footer mb-0"> ${task.providerName} </figcaption>
+                     <figcaption class="blockquote-footer mb-0"> ${task.providerName}    &nbsp&nbsp&nbsp&nbsp      ${task.date} </figcaption>
                   </figure>
               </div>
              </div>
@@ -234,7 +244,9 @@ function badgeRemane(content,colorhash) {
 }
 
    
+let n = new Date()
 
+console.log(n.toISOString())
 function addToLocal(emptyArray){
     window.localStorage.setItem("tasks", JSON.stringify(emptyArray))
 
