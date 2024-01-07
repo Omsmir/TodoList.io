@@ -24,12 +24,10 @@ if (window.localStorage.getItem("tasks")){
 }
 
 
-for(let i = 0 ; i < emptyArray.length; i++){
-    colorPicker.value == emptyArray[i].colorhash
-    colorLine.value == emptyArray[i].colorl
-}
 
 getFromLocal()
+
+
 
 function empty(){
     text.value =""
@@ -89,9 +87,9 @@ function delLocal(taskid){
         
 delLocal(ele.target.parentElement.parentElement.parentElement.getAttribute("data-id"))
 
+setTimeout(() => {
     ele.target.parentElement.parentElement.parentElement.remove()
-
-
+},500)
     }
 
 let id = ele.target.parentElement.parentElement.parentElement
@@ -121,9 +119,7 @@ if(ele.target.classList.contains("edit")){
                 form.id = "inputDone"
                 
                 let one  = ele.target.parentElement.parentElement.previousElementSibling.firstElementChild
-            
-                console.log(one)
-            
+                        
                 form.value = one.firstElementChild.innerText
 
                 one.firstElementChild.remove()
@@ -187,12 +183,9 @@ function addElements (textValue,provider,label,color,line){
     
 }
 
-console.log(emptyArray)
 
 function addToPage(emptyArray){
     todo.innerHTML = ""; 
-
-
         let result = emptyArray.map((task) => {
             return  `<div data-id="${task.id}" todo="${task.todo}" class="row fir row-cols-3 text d-flex flex-row justify-content-center align-items-center ">
             <div class="col-lg-2 col-md-2 col-sm-2 col-4 left d-flex flex-row justify-content-center align-items-center">
@@ -209,8 +202,8 @@ function addToPage(emptyArray){
                 ${badgeRemane(task.label,task.colorHash)}
               </div>
               <div class="second-child">
-                 <figure class="m-0">
-                     <figcaption class="blockquote-footer mb-0"> ${task.providerName}    &nbsp&nbsp&nbsp&nbsp      ${task.date} </figcaption>
+                 <figure>
+                     <figcaption class="blockquote-footer mb-0"> ${task.providerName}    <span> - ${task.date} </span> </figcaption>
                   </figure>
               </div>
              </div>
@@ -230,6 +223,8 @@ function addToPage(emptyArray){
             </div>
            </div>  `
 
+           
+
         })
    
         todo.innerHTML = result.join("")
@@ -244,9 +239,9 @@ function badgeRemane(content,colorhash) {
 }
 
    
-let n = new Date()
+// let n = new Date()
 
-console.log(n.toISOString())
+// console.log(n.toISOString())
 function addToLocal(emptyArray){
     window.localStorage.setItem("tasks", JSON.stringify(emptyArray))
 
@@ -260,6 +255,7 @@ function getFromLocal(){
     let data = window.localStorage.getItem("tasks")
     if(data){
         let task = JSON.parse(data)
+        
         addToPage(task)
     }
 }

@@ -17,7 +17,7 @@ body {
     text-align: left !important;
     background: #0F2027 !important;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027) !important;  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ background: linear-gradient( 10.948rad, rgb(7, 7, 9) 6.5%, rgb(27, 24, 113) 93.2% ) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .container .row {
@@ -82,6 +82,10 @@ background: linear-gradient(to left, #327650, #536976, #292e49) !important; /* W
 .container .col-lg-6:first-of-type {
     background-color: var(--white-main);
     border-radius: 3px;
+}
+figure {
+    margin-top: 3px !important;
+    margin-bottom: 0;
 }
 .container .form #submit {
     padding: 10px;
