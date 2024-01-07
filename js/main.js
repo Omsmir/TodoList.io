@@ -96,9 +96,9 @@ let id = ele.target.parentElement.parentElement.parentElement
 
     if(ele.target.id == "defaultCheck1"){
 
-            if(ele.target.parentElement.parentElement.parentElement.getAttribute("todo") == "false"){
+            if(id.getAttribute("todo") == "false"){
                 toggleLocal(id.getAttribute("data-id"),"","checked","line-through !important")
-            }else if (ele.target.parentElement.parentElement.parentElement.getAttribute("todo") == "true"){
+            }else if (id.getAttribute("todo") == "true"){
                 toggleLocal(id.getAttribute("data-id"),"","","none !important")
 
             }
@@ -108,7 +108,7 @@ let id = ele.target.parentElement.parentElement.parentElement
 
 if(ele.target.classList.contains("edit")){
     for (let i = 0; i < emptyArray.length; i++){
-        if(emptyArray[i].id == ele.target.parentElement.parentElement.parentElement.getAttribute("data-id")){
+        if(emptyArray[i].id == id.getAttribute("data-id")){
 
             function edit(){
     
