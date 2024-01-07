@@ -186,7 +186,7 @@ button i {
 .edit:hover {
     background-color: var(--color-o) ;
 }
-.edit:hover i ,.finished:hover i:last-of-type ,.delete:hover i {
+.edit:hover i ,.finished:hover i ,.delete:hover i {
     color: #dcd7d7 !important;
 }
 
