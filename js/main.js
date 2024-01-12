@@ -161,9 +161,13 @@ if(ele.target.classList.contains("edit")){
 
 })
 
+function randomIntFromInterval () { // min and max included 
+    return Math.floor(Math.random() * (1000 - 1 ))
+  }
+
 function addElements (textValue,provider,label,color,line){
     let tasks = {
-        id: emptyArray.length+1,
+        id: randomIntFromInterval(),
         content: textValue,
         providerName:provider,
         label:label,
